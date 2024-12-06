@@ -103,18 +103,52 @@
                 <li><strong>Link to project</strong>: <a href="https://github.com/johnr282/Untitled-Strategy-Game">github.com/johnr282/Untitled-Strategy-Game</a></li>
               </ul>
             </div>
+          </div>
+
+          <div class="col-lg-12">
             <div class="portfolio-description">
               <p>
-                I developed Rent-a-Bot with a team of 3 other students as the final project for University of Michigan's 
-                video game development course, EECS 494. In Rent-a-Bot, two players must cooperate in a variety of factories
-                to process raw resources, fabricate and deliver products, and fix various disasters as they occur. 
+                I am in the very early stages of developing a turn-based strategy game with online multiplayer using 
+                Unity, C#, and the networking library Photon Fusion. The game itself is based on a board game my brother 
+                and I came up with years ago, which was played using a mixture of materials from Risk, Monopoly, and a 
+                few other miscellaneous games. 
               </p>
 
-              <p>
-                My primary roles in the team were gameplay programmer and level designer. I developed several core gameplay 
-                systems, including processors, resources, conveyor belts, item spawners, levers, and timers. I also built 
-                a robust and flexible audio system and designed all but one of the levels.
+              </p> 
+                Most of my time so far has been spent building the infrastructure to make online multiplayer possible. 
+                The most powerful features of Photon Fusion are designed for real-time applications with small, 
+                relatively simple state and thus aren't applicable to my particular use case. However, Fusion provides 
+                session hosting/joining, the Photon Cloud for testing, and the ability to define RPCs, all of which have 
+                been very useful. 
+                 
               </p>
+                To abstract the complexity of online multiplayer away from the rest of the game logic, 
+                I built a state management system using Fusion RPCs that ensures game state updates are properly replicated 
+                across the server and all clients and every client request is properly validated. The system requires that each state 
+                update (moving a unit, for example) has three components: the data associated with the update, a function 
+                that applies the update to the local game state, and a function that determines whether or not the update 
+                is allowed at that time. Using this interface, the rest of the game can be developed almost as if it is a 
+                pass-and-play game running on a single machine. 
+              </p>
+
+              </p>
+                I wrote a library that handles the hex coordinate system the map uses, supporting path planning, distance calculations, 
+                standard operators, and conversions between different hexagonal coordinate systems. 
+                <a href="https://www.redblobgames.com/grids/hexagons/">Hexagonal Grids</a> was an immensely helpful resource for 
+                understanding the necessary underlying math. I also created an algorithm allowing me to procedurally generate a game 
+                map consisting of roughly equally distributed continents. It has many tunable parameters that can be used to adjust 
+                the map size, number of continents, continent size, distance between continents, smoothness of continent borders, 
+                and water generation. 
+              </p>
+
+              </p>
+                The final major piece of infrastructure I need to build before diving in to implementing the actual game logic is the UI 
+                system. Strategy games such as this one (think the Civilization series) are extremely UI-heavy, so creating elegant 
+                abstractions and decoupling the UI as much as possible from the rest of the game will be critical to having a smooth 
+                development process down the line.
+              </p>
+
+              
             </div>
           </div>
 
